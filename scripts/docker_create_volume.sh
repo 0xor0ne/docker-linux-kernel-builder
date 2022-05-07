@@ -24,7 +24,8 @@ source_env
 DOCKFILE=${ROOT_DIR}/Dockerfile
 
 # Generate nuew builder ID if required
-if [ "$(cat ${ROOT_DIR}/${ID_FILE})" == "default" ] ; then
+if [ "$(cat ${ROOT_DIR}/${ID_FILE})" == "default" -o \
+      ! -f ${ROOT_DIR}/${ID_FILE} ] ; then
   TMP=`generate_builder_id`
   echo -n ${TMP} > ${ROOT_DIR}/${ID_FILE}
 fi
